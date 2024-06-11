@@ -25,7 +25,7 @@ public class Main {
 
         System.out.println(group);
 
-        double avg = StudentManager.calcAverageMark(group);
+        double avg = studentDAO.getAverageMark();
         System.out.print("Student avg mark " + avg + ".");
 
 

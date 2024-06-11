@@ -11,6 +11,7 @@ public class StudentDAO {
     public static final String LOGIN = "root";
     public static final String PASSWORD = "11n11n11n";
     public static final String GET_ALL_SQL = "SELECT * FROM students ORDER BY name;";
+    public static final String GET_AVG_MARK = "SELECT AVG(avg_mark) as Average FROM students";
 
     public void add(Student student) {
 
@@ -72,7 +73,34 @@ public class StudentDAO {
     }
 
     public double getAverageMark() {
+        Connection connection = null;
+        double avg = 0;
+        try {
+            Class.forName(DRIVER);
 
-        return 0;
+            connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(GET_AVG_MARK);
+
+            if (resultSet.next()) {
+                avg = resultSet.getFloat("Average");
+            }
+
+        } catch (ClassNotFoundException | SQLException exception) {
+            System.out.println(exception);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException exception) {
+                    System.out.println(exception);
+                }
+            }
+        }
+
+
+        return avg;
     }
 }
