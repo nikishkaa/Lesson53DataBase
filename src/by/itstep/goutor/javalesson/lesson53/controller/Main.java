@@ -5,9 +5,9 @@ import by.itstep.goutor.javalesson.lesson53.model.entity.Group;
 import by.itstep.goutor.javalesson.lesson53.model.entity.Student;
 import by.itstep.goutor.javalesson.lesson53.model.logic.StudentManager;
 
-public class Main {
+public class Main extends Object {
     public static void main(String[] args) {
-//        Student student1 = new Student("alex", 20, 9);
+        Student student1 = new Student("qwewrefgdssfbdvc vvdccxc vcx", 20, 9);
 //        Student student2 = new Student("qwerty", 20, 7);
 //        Student student3 = new Student("dsf", 20, 5);
 //        Student student4 = new Student("frgtfg", 20, 3);
@@ -21,13 +21,15 @@ public class Main {
 //        group.getList().add(student5);
 
         StudentDAO studentDAO = new StudentDAO();
-        Group group = studentDAO.getAll();
 
-        System.out.println(group);
+        Group group = studentDAO.getAll();
+        System.out.println("Before:\n" + group);
+        studentDAO.add(student1);
+         group = studentDAO.getAll();
+        System.out.println("After:\n" + group);
 
         double avg = studentDAO.getAverageMark();
         System.out.print("Student avg mark " + avg + ".");
-
 
 
     }
