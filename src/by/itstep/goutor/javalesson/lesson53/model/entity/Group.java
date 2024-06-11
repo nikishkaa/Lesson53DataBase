@@ -1,9 +1,10 @@
 package by.itstep.goutor.javalesson.lesson53.model.entity;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Group {
+public class Group implements Iterable<Student> {
     private List<Student> list;
 
     public Group() {
@@ -31,5 +32,10 @@ public class Group {
         }
 
         return builder.toString();
+    }
+
+    @Override
+    public Iterator<Student> iterator() {
+        return list.iterator();
     }
 }
